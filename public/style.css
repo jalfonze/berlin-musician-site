@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #fff4e7;
+}
+
+.my-recipe-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
