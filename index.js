@@ -67,7 +67,8 @@ app.post("/createUser", (req, res) => {
                 errMsg: "Fields cannot be empty!",
             });
         } else {
-            db.createUser(username, email, newPass)
+            let image = `https://api.adorable.io/avatars/400/${username}.io.png`;
+            db.createUser(username, email, image, newPass)
                 .then((response) => {
                     console.log(response.rows[0].id);
                     req.session.userId = response.rows[0].id;
@@ -197,6 +198,11 @@ app.get("/get-my-recipes", (req, res) => {
         console.log(response.rows);
         res.json(response.rows);
     });
+});
+
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/welcome");
 });
 
 app.get("*", function (req, res) {

@@ -34,7 +34,9 @@ export default function MyFavourite() {
                             <div key={i}>
                                 <h1>{item.label}</h1>
                                 <h3>Yields: {item.yield}</h3>
-                                <img src={item.img_url}></img>
+                                <a target="__blank" href={item.url}>
+                                    <img src={item.img_url}></img>
+                                </a>
                                 <button value={item.id} onClick={deleteFave}>
                                     delete
                                 </button>

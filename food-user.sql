@@ -23,6 +23,18 @@ CREATE TABLE favourites (
      user_id INT REFERENCES users(id) NOT NULL,
      created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS topfave CASCADE;
+
+CREATE TABLE topfave (
+     id SERIAL PRIMARY KEY,
+     label VARCHAR,
+     img_url VARCHAR,
+     url VARCHAR,
+     fave_id INT REFERENCES favourites(id) NOT NULL,
+     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 DROP TABLE IF EXISTS myrecipes CASCADE;
 
 CREATE TABLE myrecipes (

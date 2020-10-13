@@ -7,6 +7,10 @@ import MyRecipes from "./my-recipes";
 import axios from "./axios";
 
 export default function App() {
+    const logOut = () => {
+        axios.get("/logout");
+    };
+
     return (
         <React.Fragment>
             <BrowserRouter>
@@ -23,6 +27,11 @@ export default function App() {
                     </h5>
                     <h5>
                         <Link to="/my-recipes">My Recipes</Link>
+                    </h5>
+                    <h5>
+                        <a href="/welcome" onClick={logOut}>
+                            Log Out
+                        </a>
                     </h5>
                 </div>
 

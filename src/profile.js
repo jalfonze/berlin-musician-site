@@ -14,7 +14,12 @@ export default function Profile() {
 
     return (
         <React.Fragment>
-            {info && <h1>Here is your profile {info.username}</h1>}
+            {info && (
+                <div>
+                    <h1>Welcome {info.username}!</h1>
+                    <img src={info.img_url} width="200px"></img>
+                </div>
+            )}
         </React.Fragment>
     );
 }

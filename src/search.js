@@ -11,6 +11,8 @@ export default function Search() {
     let [searchInput, setSearchInput] = useState("");
     const [foodItems, setFoodItems] = useState([]);
     let [filteredOptions, setFilteredOptions] = useState([]);
+    let [modal, setModal] = useState(false);
+    let [modalInfo, setModalInfo] = useState();
 
     const handleSearch = (e) => {
         setSearchInput(e.target.value);
@@ -41,20 +43,30 @@ export default function Search() {
         }
     };
 
-    console.log(filteredOptions);
+    const showModal = (num) => {
+        // console.log("click");
+        // console.log(num);
+        setModal(true);
+        console.log(foodItems[num].recipe);
+        setModalInfo(foodItems[num].recipe);
+    };
+
+    const closeModal = () => {
+        setModal(false);
+    };
+
+    console.log("FOOD ITEMS", foodItems);
 
     const addToFave = (e) => {
         e.preventDefault();
         // console.log(e.target.value);
         // console.log(foodItems[e.target.value].recipe);
-        const { label, ingredientLines, healthLabels, image, url } = foodItems[
-            e.target.value
-        ].recipe;
+        const { label, ingredientLines, healthLabels, image, url } = modalInfo;
 
         let foodInfo = {
             label: label,
             ingredientLines: ingredientLines,
-            yield: foodItems[e.target.value].recipe.yield,
+            yield: modalInfo.yield,
             image: image,
             url: url,
             healthLabels: healthLabels,
@@ -62,85 +74,98 @@ export default function Search() {
         axios.post("/add-to-fave", foodInfo).then((response) => {
             console.log(response.data);
         });
+        closeModal();
     };
     // console.log("FOOD ITEMS", foodItems);
 
     return (
         <React.Fragment>
-            <div>
+            <div className="search-title">
                 <h1>Type an ingredient</h1>
             </div>
-            <div>
+            <div className="search-inputs">
                 <input
                     onChange={handleSearch}
                     type="text"
                     name="search"
                     placeholder="type an ingredient"
                 ></input>
-                <label htmlFor="peanut-free">Peanut Free</label>
-                <input
-                    type="checkbox"
-                    name="health"
-                    value="peanut-free"
-                    id="peanut-free"
-                    onClick={checkBoxClick}
-                ></input>
-                <label htmlFor="alcohol-free">Alcohol Free</label>
-                <input
-                    type="checkbox"
-                    name="health"
-                    value="alcohol-free"
-                    id="alcohol-free"
-                    onClick={checkBoxClick}
-                ></input>
-                <label htmlFor="vegan">Vegan</label>
-                <input
-                    type="checkbox"
-                    name="health"
-                    value="vegan"
-                    id="vegan"
-                    onClick={checkBoxClick}
-                ></input>
-                <label htmlFor="vegetarian">Vegetarian</label>
-                <input
-                    type="checkbox"
-                    name="health"
-                    value="vegetarian"
-                    id="vegetarian"
-                    onClick={checkBoxClick}
-                ></input>
+                <div className="checkboxes">
+                    <label>Peanut Free</label>
+                    <input
+                        type="checkbox"
+                        name="health"
+                        value="peanut-free"
+                        id="peanut-free"
+                        onClick={checkBoxClick}
+                    ></input>
+                    <label>Alcohol Free</label>
+                    <input
+                        type="checkbox"
+                        name="health"
+                        value="alcohol-free"
+                        id="alcohol-free"
+                        onClick={checkBoxClick}
+                    ></input>
+                    <label>Vegan</label>
+                    <input
+                        type="checkbox"
+                        name="health"
+                        value="vegan"
+                        id="vegan"
+                        onClick={checkBoxClick}
+                    ></input>
+                    <label>Vegetarian</label>
+                    <input
+                        type="checkbox"
+                        name="health"
+                        value="vegetarian"
+                        id="vegetarian"
+                        onClick={checkBoxClick}
+                    ></input>
+                </div>
                 <button onClick={foodSearch} type="submit">
                     Submit
                 </button>
             </div>
             <div>
-                {foodItems &&
-                    foodItems.map((item, i) => {
-                        return (
-                            <div key={i}>
-                                <h1>{item.recipe.label}</h1>
-                                {item.recipe.healthLabels.map((label, i) => {
-                                    return <p key={i}>{label}</p>;
-                                })}
-                                <img src={item.recipe.image}></img>
-                                {item.recipe.ingredientLines.map(
-                                    (ingredients, i) => {
-                                        return <p key={i}>{ingredients}</p>;
-                                    }
-                                )}
-                                <a
-                                    href={item.recipe.url}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Full recipe here!
-                                </a>
-                                <button value={i} onClick={addToFave}>
-                                    add to favourites
-                                </button>
-                            </div>
-                        );
-                    })}
+                <div className="search-items">
+                    {foodItems &&
+                        foodItems.map((item, i) => {
+                            return (
+                                <div key={i}>
+                                    <img
+                                        onClick={() => showModal(i)}
+                                        src={item.recipe.image}
+                                    ></img>
+                                    <h1>{item.recipe.label}</h1>
+                                </div>
+                            );
+                        })}
+                    {modal && modalInfo && (
+                        <div className="modal">
+                            <h1>{modalInfo.label}</h1>
+                            <h2 onClick={closeModal}>close</h2>
+                            {modalInfo.healthLabels.map((label, i) => {
+                                return <p key={i}>{label}</p>;
+                            })}
+                            <img src={modalInfo.image}></img>
+                            {modalInfo.ingredientLines.map((ingredients, i) => {
+                                return <p key={i}>{ingredients}</p>;
+                            })}
+                            <a
+                                href={modalInfo.url}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Full recipe here!
+                            </a>
+                            <button onClick={addToFave}>
+                                add to favourites
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </React.Fragment>
     );

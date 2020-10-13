@@ -2,14 +2,14 @@ const spicedPg = require("spiced-pg");
 
 const db = spicedPg("postgres:postgres:postgres@localhost:5432/food-user");
 
-module.exports.createUser = (username, email, pw) => {
+module.exports.createUser = (username, email, img, pw) => {
     return db.query(
         `
-        INSERT INTO users (username, email, password)
-        VALUES ($1, $2, $3)
+        INSERT INTO users (username, email, img_url, password)
+        VALUES ($1, $2, $3, $4)
         RETURNING id
         `,
-        [username, email, pw]
+        [username, email, img, pw]
     );
 };
 
@@ -54,6 +54,7 @@ module.exports.getFave = (id) => {
         `
         SELECT * FROM favourites
         WHERE user_id = ($1)
+        ORDER BY id DESC
         `,
         [id]
     );
