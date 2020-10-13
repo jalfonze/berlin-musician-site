@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
+// import Maps from "./map";
 
 export default function Profile() {
     const [info, setInfo] = useState();
@@ -20,6 +21,7 @@ export default function Profile() {
                     <img src={info.img_url} width="200px"></img>
                 </div>
             )}
+            {/* <Maps /> */}
         </React.Fragment>
     );
 }

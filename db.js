@@ -59,6 +59,59 @@ module.exports.getFave = (id) => {
         [id]
     );
 };
+module.exports.mostViewed = (id) => {
+    return db.query(
+        `
+        SELECT * FROM favourites
+        WHERE user_id = ($1)
+        ORDER BY click_count DESC
+        LIMIT 3
+        `,
+        [id]
+    );
+};
+module.exports.updateFave = (num, fave_id) => {
+    return db.query(
+        `
+        UPDATE favourites
+        SET click_count = click_count + ($1)
+        WHERE id = ($2)
+        `,
+        [num, fave_id]
+    );
+};
+
+module.exports.getTop = (id) => {
+    return db.query(
+        `
+        SELECT * FROM topfave
+        WHERE user_id = ($1)
+        ORDER BY id DESC
+        `,
+        [id]
+    );
+};
+
+module.exports.addTop = (label, img_url, url, user_id, fave_id) => {
+    return db.query(
+        `
+        INSERT INTO topfave (label, img_url, url, user_id, fave_id)
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING label, img_url, url, user_id, fave_id
+        `,
+        [label, img_url, url, user_id, fave_id]
+    );
+};
+
+module.exports.remTop = (id) => {
+    return db.query(
+        `
+         DELETE FROM topfave
+         WHERE fave_id=($1)
+        `,
+        [id]
+    );
+};
 
 module.exports.deleteFave = (id) => {
     return db.query(

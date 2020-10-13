@@ -161,24 +161,65 @@ app.post("/add-to-fave", (req, res) => {
         url,
         yeeld,
         req.session.userId
-    ).then((response) => {
-        console.log(response.rows);
+    ).then(() => {
+        // console.log(response.rows);
     });
 });
 
 app.get("/get-fave", (req, res) => {
     db.getFave(req.session.userId).then((response) => {
-        console.log(response.rows);
+        // console.log(response.rows);
+        res.json(response.rows);
+    });
+});
+app.get("/get-top", (req, res) => {
+    db.getTop(req.session.userId).then((response) => {
+        // console.log(response.rows);
         res.json(response.rows);
     });
 });
 
-app.post("/delete-fave", (req, res) => {
-    console.log(req.body);
-    db.deleteFave(req.body.id).then(() => {
-        db.getFave(req.session.userId).then((response) => {
+app.post("/add-top", (req, res) => {
+    // console.log("TTOP", req.body);
+    const { label, img_url, url, id } = req.body;
+    db.addTop(label, img_url, url, req.session.userId, id).then((response) => {
+        console.log("NEW TOP ADD", response.rows[0]);
+        res.json(response.rows[0]);
+    });
+});
+
+app.post("/rem-top", (req, res) => {
+    console.log("IDIDIDID", req.body.id);
+    db.remTop(req.body.id).then(() => {
+        db.getTop(req.session.userId).then((response) => {
             res.json(response.rows);
         });
+    });
+});
+app.post("/delete-fave", (req, res) => {
+    // console.log(req.body);
+    db.deleteFave(req.body.id).then(() => {
+        db.getFave(req.session.userId).then((response) => {
+            const favelist = response.rows;
+            db.getTop(req.session.userId).then((response) => {
+                const toplist = response.rows;
+                let newArr = [favelist, toplist];
+                // console.log("NEWARR", newArr);
+                res.json(newArr);
+            });
+        });
+    });
+});
+
+app.post("/counter", (req, res) => {
+    console.log(req.body);
+    db.updateFave(req.body.counter, req.body.item);
+});
+
+app.get("/get-most-vewied", (req, res) => {
+    db.mostViewed(req.session.userId).then((response) => {
+        console.log(response.rows);
+        res.json(response.rows);
     });
 });
 

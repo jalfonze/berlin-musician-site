@@ -17,20 +17,28 @@ export default function App() {
                 <div className="nav">
                     <img src="/logo.png" width="100px"></img>
                     <h5>
-                        <Link to="/search">Search</Link>
+                        <Link to="/search">
+                            <i className="fas fa-search"></i>
+                        </Link>
                     </h5>
                     <h5>
-                        <Link to="/">Profile</Link>
+                        <Link to="/">
+                            <i className="fas fa-user"></i>
+                        </Link>
                     </h5>
                     <h5>
-                        <Link to="/my-fave">Favourites</Link>
+                        <Link to="/my-fave">
+                            <i className="fas fa-bookmark"></i>
+                        </Link>
                     </h5>
                     <h5>
-                        <Link to="/my-recipes">My Recipes</Link>
+                        <Link to="/my-recipes">
+                            <i className="fas fa-book"></i>
+                        </Link>
                     </h5>
                     <h5>
                         <a href="/welcome" onClick={logOut}>
-                            Log Out
+                            <i className="fas fa-sign-out-alt"></i>
                         </a>
                     </h5>
                 </div>

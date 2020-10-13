@@ -20,6 +20,7 @@ CREATE TABLE favourites (
      img_url VARCHAR,
      url VARCHAR,
      yield INT,
+     click_count INT DEFAULT 1,
      user_id INT REFERENCES users(id) NOT NULL,
      created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -31,7 +32,8 @@ CREATE TABLE topfave (
      label VARCHAR,
      img_url VARCHAR,
      url VARCHAR,
-     fave_id INT REFERENCES favourites(id) NOT NULL,
+     user_id INT REFERENCES users(id) NOT NULL,
+     fave_id INT NOT NULL REFERENCES favourites(id) ON DELETE CASCADE,
      created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

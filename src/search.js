@@ -81,17 +81,17 @@ export default function Search() {
     return (
         <React.Fragment>
             <div className="search-title">
-                <h1>Type an ingredient</h1>
+                <img src="/logo.png" width="250px"></img>
             </div>
             <div className="search-inputs">
                 <input
+                    className="inputOne"
                     onChange={handleSearch}
                     type="text"
                     name="search"
-                    placeholder="type an ingredient"
+                    placeholder="What do you want to cook?"
                 ></input>
                 <div className="checkboxes">
-                    <label>Peanut Free</label>
                     <input
                         type="checkbox"
                         name="health"
@@ -99,7 +99,7 @@ export default function Search() {
                         id="peanut-free"
                         onClick={checkBoxClick}
                     ></input>
-                    <label>Alcohol Free</label>
+                    <label>Peanut Free</label>
                     <input
                         type="checkbox"
                         name="health"
@@ -107,7 +107,7 @@ export default function Search() {
                         id="alcohol-free"
                         onClick={checkBoxClick}
                     ></input>
-                    <label>Vegan</label>
+                    <label>Alcohol Free</label>
                     <input
                         type="checkbox"
                         name="health"
@@ -115,7 +115,7 @@ export default function Search() {
                         id="vegan"
                         onClick={checkBoxClick}
                     ></input>
-                    <label>Vegetarian</label>
+                    <label>Vegan</label>
                     <input
                         type="checkbox"
                         name="health"
@@ -123,9 +123,14 @@ export default function Search() {
                         id="vegetarian"
                         onClick={checkBoxClick}
                     ></input>
+                    <label>Vegetarian</label>
                 </div>
-                <button onClick={foodSearch} type="submit">
-                    Submit
+                <button
+                    className="searchbtn"
+                    onClick={foodSearch}
+                    type="submit"
+                >
+                    Search
                 </button>
             </div>
             <div>
@@ -138,33 +143,37 @@ export default function Search() {
                                         onClick={() => showModal(i)}
                                         src={item.recipe.image}
                                     ></img>
-                                    <h1>{item.recipe.label}</h1>
+                                    <h3 className="h3">{item.recipe.label}</h3>
                                 </div>
                             );
                         })}
-                    {modal && modalInfo && (
-                        <div className="modal">
-                            <h1>{modalInfo.label}</h1>
-                            <h2 onClick={closeModal}>close</h2>
-                            {modalInfo.healthLabels.map((label, i) => {
-                                return <p key={i}>{label}</p>;
-                            })}
-                            <img src={modalInfo.image}></img>
-                            {modalInfo.ingredientLines.map((ingredients, i) => {
-                                return <p key={i}>{ingredients}</p>;
-                            })}
-                            <a
-                                href={modalInfo.url}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Full recipe here!
-                            </a>
-                            <button onClick={addToFave}>
-                                add to favourites
-                            </button>
-                        </div>
-                    )}
+                    <div className="modal-parent">
+                        {modal && modalInfo && (
+                            <div className="modal">
+                                <h1>{modalInfo.label}</h1>
+                                <h2 onClick={closeModal}>close</h2>
+                                {modalInfo.healthLabels.map((label, i) => {
+                                    return <p key={i}>{label}</p>;
+                                })}
+                                <img src={modalInfo.image}></img>
+                                {modalInfo.ingredientLines.map(
+                                    (ingredients, i) => {
+                                        return <p key={i}>{ingredients}</p>;
+                                    }
+                                )}
+                                <a
+                                    href={modalInfo.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    Full recipe here!
+                                </a>
+                                <button onClick={addToFave}>
+                                    add to favourites
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </React.Fragment>
