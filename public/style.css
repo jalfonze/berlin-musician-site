@@ -4,6 +4,13 @@
     background-color: #fff4e7;
     font-family: "Quicksand", sans-serif;
 }
+.line-through {
+    text-decoration: line-through;
+}
+
+textarea {
+    outline: none;
+}
 
 input {
     outline: none;
@@ -13,9 +20,23 @@ button {
     outline: none;
 }
 
+.usercolor {
+    color: #a70041;
+}
+
 .fas {
     font-size: 18pt;
     color: #a70041;
+}
+
+.fas:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 .nav {
@@ -57,7 +78,6 @@ button {
     border: 1px solid #dcdcdc;
     cursor: pointer;
     color: #a70041;
-    font-family: Arial;
     font-size: 15px;
     font-weight: bold;
     padding: 10px 60px;
@@ -105,6 +125,12 @@ button {
     padding: 10px;
 }
 
+.modal-img:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    border: solid rgb(34, 29, 29) 1px;
+}
+
 .h3 {
     width: 300px;
 }
@@ -120,10 +146,29 @@ button {
     top: 20%;
     left: 30%;
     bottom: 70%;
-    background-color: cadetblue;
+    background-color: #a70041;
     width: 500px;
     height: 500px;
     overflow-y: scroll;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-section div {
+    padding: 10px;
+}
+
+.modal-section h4 p {
+    display: flex;
+    flex-direction: column;
 }
 
 .favourite-top {
@@ -196,8 +241,117 @@ button {
     margin: 15px;
 }
 
+.profile-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* justify-items: center; */
+}
+
+.profile-image {
+    justify-self: center;
+}
+
+.profile-image h1 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.list-container {
+    justify-self: flex-start;
+    width: 300px;
+    height: 400px;
+    padding: 10px;
+    background-color: #a70041;
+    border-radius: 20px;
+    /* color: #fff4e7; */
+}
+
+.list-input {
+    font-size: 20px;
+    border-width: 0px;
+    border-color: #cccccc;
+    background-color: #fff4e7;
+    color: #000000;
+    /* border-radius: 18px; */
+    border-bottom: solid #a70041 1px;
+    outline: none;
+    /* border-width: 0px; */
+    width: 200px;
+}
+
+.list-input:focus::placeholder {
+    color: transparent;
+}
+
+.add-item {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.item-list-parent {
+    overflow-y: scroll;
+    height: 140px;
+}
+
+.item-list {
+    display: flex;
+    justify-content: center;
+}
+.list-button {
+    background-color: #a70041;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    cursor: pointer;
+    color: #f9f9f9;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 3px 8px;
+    margin: 10px;
+}
+
+.list-del {
+    background-color: #fff4e7;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    cursor: pointer;
+    color: #a70041;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 3px 8px;
+    margin: 10px;
+}
+
+.my-recipe-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 .my-recipe-form {
+    justify-self: center;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    align-items: center;
+    width: 400px;
+    background-color: #a70041;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.my-recipe-form * {
+    margin: 10px;
+    border-radius: 10px;
+    padding: 3px 9px;
+}
+.my-recipe-form label {
+    background-color: #a70041;
+    color: #fff4e7;
+    font-size: 20pt;
+}
+
+#yield {
+    width: 50px;
+}
+
+#label {
+    font-size: 15pt;
 }

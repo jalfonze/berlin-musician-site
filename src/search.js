@@ -140,6 +140,7 @@ export default function Search() {
                             return (
                                 <div key={i}>
                                     <img
+                                        className="modal-img"
                                         onClick={() => showModal(i)}
                                         src={item.recipe.image}
                                     ></img>
@@ -150,27 +151,44 @@ export default function Search() {
                     <div className="modal-parent">
                         {modal && modalInfo && (
                             <div className="modal">
-                                <h1>{modalInfo.label}</h1>
-                                <h2 onClick={closeModal}>close</h2>
-                                {modalInfo.healthLabels.map((label, i) => {
-                                    return <p key={i}>{label}</p>;
-                                })}
-                                <img src={modalInfo.image}></img>
-                                {modalInfo.ingredientLines.map(
-                                    (ingredients, i) => {
-                                        return <p key={i}>{ingredients}</p>;
-                                    }
-                                )}
-                                <a
-                                    href={modalInfo.url}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Full recipe here!
-                                </a>
-                                <button onClick={addToFave}>
-                                    add to favourites
-                                </button>
+                                <div className="modal-header">
+                                    <h3>{modalInfo.label}</h3>
+                                    <button onClick={addToFave}>
+                                        <i className="fas fa-bookmark"></i>
+                                    </button>
+                                    <h2 onClick={closeModal}>
+                                        <i className="fas fa-times"></i>
+                                    </h2>
+                                </div>
+                                <div className="modal-section">
+                                    <img
+                                        src={modalInfo.image}
+                                        width="150px"
+                                    ></img>
+                                    <div>
+                                        <h3>Dietary information</h3>
+                                        {modalInfo.healthLabels.map(
+                                            (label, i) => {
+                                                return <p key={i}>{label}</p>;
+                                            }
+                                        )}
+                                    </div>
+                                </div>
+                                <div className="modal-main">
+                                    <h3>Ingredients</h3>
+                                    {modalInfo.ingredientLines.map(
+                                        (ingredients, i) => {
+                                            return <p key={i}>{ingredients}</p>;
+                                        }
+                                    )}
+                                    <a
+                                        href={modalInfo.url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        Full recipe here!
+                                    </a>
+                                </div>
                             </div>
                         )}
                     </div>

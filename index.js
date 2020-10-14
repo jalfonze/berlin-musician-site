@@ -223,6 +223,34 @@ app.get("/get-most-vewied", (req, res) => {
     });
 });
 
+let itemArr = [];
+app.post("/save-item", (req, res) => {
+    // console.log("SAVE THIS ITEM", req.body);
+    itemArr = [...itemArr, req.body.item];
+    // console.log("ITEM ARR", itemArr);
+    db.saveItem(itemArr, req.session.userId)
+        .then((response) => {
+            console.log(response.rows[0].item);
+            res.json(response.rows);
+        })
+        .catch((err) => console.log("ERROR IN SAVE ITEM", err));
+});
+app.get("/get-list", (req, res) => {
+    db.getList().then((response) => {
+        console.log(response.rows);
+        res.json(response.rows);
+    });
+});
+
+app.get("/del-list", (req, res) => {
+    let defaultArr = ["Shopping List Empty"];
+    itemArr = [];
+    db.saveItem(defaultArr, req.session.userId).then((response) => {
+        console.log(response.rows);
+        res.json(response.rows);
+    });
+});
+
 app.post("/create-recipe", (req, res) => {
     console.log(req.body);
     const { label, ingred, method } = req.body;

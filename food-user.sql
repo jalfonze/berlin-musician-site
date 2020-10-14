@@ -49,3 +49,12 @@ CREATE TABLE myrecipes (
      user_id INT REFERENCES users(id) NOT NULL,
      created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS shopping CASCADE;
+
+CREATE TABLE shopping (
+     id SERIAL PRIMARY KEY,
+     item VARCHAR[] DEFAULT null,
+     user_id INT REFERENCES users(id) NOT NULL,
+     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

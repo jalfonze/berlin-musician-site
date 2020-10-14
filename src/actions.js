@@ -58,3 +58,28 @@ export async function remTop(id) {
         remTop: data,
     };
 }
+export async function saveItem(itemObj) {
+    // console.log("ITEM OBJE", itemObj);
+    const { data } = await axios.post("/save-item", itemObj);
+    console.log("SAVE ITEM DATA", data);
+    return {
+        type: "SAVE_ITEM",
+        savedItem: data,
+    };
+}
+export async function getList() {
+    const { data } = await axios.get("/get-list");
+    console.log("LISTS ITEM DATA", data);
+    return {
+        type: "GET_LIST",
+        shoppingList: data,
+    };
+}
+export async function delList() {
+    const { data } = await axios.get("/del-list");
+    console.log("DELETE LIST DEFAULT", data);
+    return {
+        type: "DEL",
+        empty: data,
+    };
+}

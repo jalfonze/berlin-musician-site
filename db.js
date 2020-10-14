@@ -123,6 +123,25 @@ module.exports.deleteFave = (id) => {
     );
 };
 
+module.exports.saveItem = (item, id) => {
+    console.log(id);
+    return db.query(
+        `
+        UPDATE shopping 
+        SET item = ($1), user_id = ($2)
+        RETURNING *
+        `,
+        [item, id]
+    );
+};
+module.exports.getList = () => {
+    return db.query(
+        `
+        SELECT * FROM shopping
+        `
+    );
+};
+
 module.exports.createRecipe = (label, ingredients, yeeld, method, id) => {
     return db.query(
         `
