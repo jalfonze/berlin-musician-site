@@ -33,7 +33,7 @@ export default function Registration() {
 
     return (
         <React.Fragment>
-            <form>
+            <form className="register-form">
                 <h2>{errMsg}</h2>
                 <label>Username</label>
                 <input
@@ -56,9 +56,8 @@ export default function Registration() {
                     type="password"
                     placeholder="Password"
                 ></input>
-                <label>Create Account</label>
                 <button onClick={createUser} type="submit">
-                    Submit
+                    Create Account
                 </button>
             </form>
         </React.Fragment>

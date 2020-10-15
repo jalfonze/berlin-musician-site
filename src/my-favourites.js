@@ -91,7 +91,7 @@ export default function MyFavourite() {
                     </div>
                     <div className="each-top">
                         {(top && top.length == 0 && (
-                            <h4>currently no starred</h4>
+                            <h4>No current Top Picks</h4>
                         )) ||
                             (top &&
                                 top.map((top, i) => {

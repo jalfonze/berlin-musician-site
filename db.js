@@ -147,7 +147,7 @@ module.exports.createRecipe = (label, ingredients, yeeld, method, id) => {
         `
         INSERT INTO myrecipes (label, ingredients, yield, method, user_id )
         VALUES ($1, $2, $3, $4, $5)
-        RETURNING *
+        RETURNING label, ingredients, yield, method, user_id
         `,
         [label, ingredients, yeeld, method, id]
     );
@@ -157,6 +157,16 @@ module.exports.getMyRecipes = (id) => {
     return db.query(
         `
         SELECT * FROM myrecipes WHERE user_id = ($1)
+        `,
+        [id]
+    );
+};
+
+module.exports.delRecipe = (id) => {
+    return db.query(
+        `
+        DELETE FROM myrecipes
+        WHERE id = ($1)
         `,
         [id]
     );

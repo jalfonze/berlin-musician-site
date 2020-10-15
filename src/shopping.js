@@ -36,7 +36,7 @@ export default function Shopping() {
 
     // console.log("TICKED MARK", ticked);
 
-    console.log("SHOPPING LIST", shoppingList);
+    // console.log("SHOPPING LIST", shoppingList);
     return (
         <React.Fragment>
             <div className="list-container">

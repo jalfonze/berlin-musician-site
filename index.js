@@ -67,7 +67,9 @@ app.post("/createUser", (req, res) => {
                 errMsg: "Fields cannot be empty!",
             });
         } else {
-            let image = `https://api.adorable.io/avatars/400/${username}.io.png`;
+            // let image = `https://api.adorable.io/avatars/400/${username}.io.png`;
+            let image = `https://avatars.dicebear.com/api/bottts/${username}.svg`;
+            //avatars.dicebear.com/api/:bottts/:${username}.svg
             db.createUser(username, email, image, newPass)
                 .then((response) => {
                     console.log(response.rows[0].id);
@@ -237,7 +239,7 @@ app.post("/save-item", (req, res) => {
 });
 app.get("/get-list", (req, res) => {
     db.getList().then((response) => {
-        console.log(response.rows);
+        // console.log(response.rows);
         res.json(response.rows);
     });
 });
@@ -246,7 +248,7 @@ app.get("/del-list", (req, res) => {
     let defaultArr = ["Shopping List Empty"];
     itemArr = [];
     db.saveItem(defaultArr, req.session.userId).then((response) => {
-        console.log(response.rows);
+        // console.log(response.rows);
         res.json(response.rows);
     });
 });
@@ -255,17 +257,35 @@ app.post("/create-recipe", (req, res) => {
     console.log(req.body);
     const { label, ingred, method } = req.body;
     let yeeld = parseInt(req.body.yield);
-    db.createRecipe(label, ingred, yeeld, method, req.session.userId)
-        .then((response) => {
-            console.log(response.rows);
-        })
-        .catch((err) => console.log("ERROR IN CREATE RECIPE", err));
+    if (label == "" || ingred == "" || method == "" || yeeld == 0) {
+        res.json({
+            success: false,
+            errMsg: "All fields must be filled!",
+        });
+    } else {
+        db.createRecipe(label, ingred, yeeld, method, req.session.userId)
+            .then((response) => {
+                console.log("NEWLY ADDED RECIPE", response.rows);
+                res.json(response.rows);
+            })
+            .catch((err) => console.log("ERROR IN CREATE RECIPE", err));
+    }
 });
 
 app.get("/get-my-recipes", (req, res) => {
     db.getMyRecipes(req.session.userId).then((response) => {
-        console.log(response.rows);
+        // console.log(response.rows);
         res.json(response.rows);
+    });
+});
+
+app.post("/del-recipe", (req, res) => {
+    console.log("DEL RECIPE ID", req.body);
+    db.delRecipe(req.body.recId).then(() => {
+        db.getMyRecipes(req.session.userId).then((response) => {
+            // console.log("DEL REC ", response.rows);
+            res.json(response.rows);
+        });
     });
 });
 

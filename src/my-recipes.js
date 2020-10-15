@@ -1,25 +1,38 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyRecipe, addRecipe, delRecipe } from "./actions";
 
 export default function MyRecipes() {
+    const dispatch = useDispatch();
+    const myRecipes = useSelector((state) => state.myRecipes);
     const [inputValues, setInputValues] = useState({
         label: "",
-        ingredients: "",
+        ingred: "",
         yield: 0,
         method: "",
     });
-    // const [errMsg, setErrMsg] = useState("");
+    const [errMsg, setErrMsg] = useState("");
 
-    const [myRecipes, setMyRecipes] = useState([]);
+    const [modal, setModal] = useState(false);
+    let [modalInfo, setModalInfo] = useState();
+    // console.log("MY RECIPES", myRecipes);
 
     useEffect(() => {
-        axios.get("/get-my-recipes").then((response) => {
-            console.log(response.data);
-            setMyRecipes(response.data);
-        });
+        dispatch(getMyRecipe());
     }, []);
 
-    console.log("MY RECIPES", myRecipes);
+    const showModal = (num) => {
+        console.log("click");
+        console.log(num);
+        setModal(true);
+        console.log(myRecipes[num]);
+        setModalInfo(myRecipes[num]);
+    };
+
+    const closeModal = () => {
+        setModal(false);
+    };
 
     const handleChange = (e) => {
         // console.log(e.target.name.value);
@@ -28,20 +41,39 @@ export default function MyRecipes() {
         setInputValues({ ...inputValues, [name]: value });
     };
 
-    // console.log(inputValues);
-
     const submitRecipe = (e) => {
         e.preventDefault();
-        // console.log("SUBMIT", inputValues);
-        axios.post("/create-recipe", inputValues).then(() => {});
+        if (
+            inputValues.label == "" ||
+            inputValues.ingred == "" ||
+            inputValues.yield == 0 ||
+            inputValues.method == ""
+        ) {
+            axios.post("/create-recipe", inputValues).then((response) => {
+                console.log(response.data);
+                if (response.data.success == false) {
+                    setErrMsg(response.data.errMsg);
+                }
+            });
+        } else {
+            dispatch(addRecipe(inputValues));
+        }
     };
+
+    const deleteRecipe = (num) => {
+        console.log("click");
+        console.log(myRecipes[num].id);
+        dispatch(delRecipe(myRecipes[num].id));
+    };
+
+    // console.log(inputValues);
 
     return (
         <React.Fragment>
-            {/* <h1>you currently have no peronal recipes</h1> */}
-            <h2>Create a recipe here</h2>
+            <h1 className="recipes-page-title">Create a recipe here</h1>
             <div className="my-recipe-page">
                 <div className="my-recipe-form">
+                    <h2 className="errmsg">{errMsg}</h2>
                     <label htmlFor="label">Name of dish</label>
                     <input
                         onChange={handleChange}
@@ -79,16 +111,48 @@ export default function MyRecipes() {
                     <button onClick={submitRecipe}>Save this recipe</button>
                 </div>
                 <div>
-                    <h2>Here are you recipes</h2>
-                    {(!myRecipes && <h1>You currently have no recipes</h1>) ||
+                    <h2 className="recipes-title">Here are you recipes</h2>
+                    {(myRecipes && myRecipes.length == 0 && (
+                        <h1>You currently have no recipes</h1>
+                    )) ||
                         (myRecipes &&
                             myRecipes.map((recipe, i) => {
                                 return (
-                                    <div key={i}>
-                                        <h1>{recipe.label}</h1>
+                                    <div className="my-recipe-info" key={i}>
+                                        <h1
+                                            className="my-recipe-title"
+                                            onClick={() => showModal(i)}
+                                        >
+                                            {recipe.label}
+                                        </h1>
+                                        <p onClick={() => deleteRecipe(i)}>
+                                            delete
+                                        </p>
                                     </div>
                                 );
                             }))}
+                    <div className="my-recipe-modal-parent">
+                        {modal && modalInfo && (
+                            <div className="my-recipe-modal">
+                                <div className="my-rec-nav">
+                                    <p onClick={closeModal}>
+                                        <i className="fas fa-times close-modal-btn"></i>
+                                    </p>
+                                </div>
+                                <div className="my-rec-info">
+                                    <h3>Name: {modalInfo.label}</h3>
+                                    <h4>
+                                        Ingredients <br></br>
+                                        {modalInfo.ingredients}
+                                    </h4>
+                                    <h4>
+                                        Method <br></br>
+                                        {modalInfo.method}
+                                    </h4>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </React.Fragment>

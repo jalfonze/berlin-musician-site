@@ -8,6 +8,10 @@
     text-decoration: line-through;
 }
 
+.errmsg {
+    background: none;
+}
+
 textarea {
     outline: none;
 }
@@ -348,10 +352,153 @@ button:hover {
     font-size: 20pt;
 }
 
+.my-recipe-modal-parent {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-recipe-modal {
+    position: fixed;
+    bottom: 50%;
+    top: 30%;
+    height: 300px;
+    width: 300px;
+    background-color: #a70041;
+    overflow: scroll;
+    border-radius: 10px;
+}
+.my-recipe-modal p {
+    background-color: #a70041;
+    padding: 10px;
+}
+
+.close-modal-btn {
+    background-color: #a70041;
+    color: #fff4e7;
+}
+
+.recipes-title {
+    padding: 20px;
+    color: #a70041;
+}
+
+.recipes-page-title {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.my-recipe-info {
+    color: #a70041;
+    padding: 10px;
+}
+.my-recipe-info p {
+    cursor: pointer;
+    padding: 10px;
+}
+.my-recipe-info p:hover {
+    transform: scale(1.05);
+}
+
+.my-recipe-title:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.my-rec-info {
+    background-color: #a70041;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.my-rec-info * {
+    background-color: #fff4e7;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.my-rec-info h4 {
+    width: 80%;
+}
+
 #yield {
     width: 50px;
 }
 
 #label {
     font-size: 15pt;
+}
+
+.welcome-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+.register-form button {
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    cursor: pointer;
+    color: #a70041;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 60px;
+    margin: 20px;
+}
+.register-form input {
+    padding: 6px;
+    font-size: 20px;
+    border-width: 0px;
+    border-color: #cccccc;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 18px;
+    box-shadow: 4px 7px 13px rgba(66, 66, 66, 0.7);
+    outline: none;
+    margin: 20px;
+    width: 400px;
+}
+
+.login-form {
+    background-color: #a70041;
+    display: flex;
+    height: 100px;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 15px;
+}
+.login-form input {
+    background: #fff4e7;
+    font-size: 16px;
+    border-radius: 7px;
+    border: none;
+    color: black;
+    padding: 5px 3px;
+}
+.login-form * {
+    margin: 10px;
+    background: #a70041;
+    color: #ffffff;
+}
+
+.loginBtn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.welcome-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

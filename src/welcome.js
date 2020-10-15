@@ -8,8 +8,12 @@ export default function Welcome() {
     return (
         <React.Fragment>
             <Login />
-            <img className="logo" src="/logo.png"></img>
-            <Registration />
+            <div className="welcome-page">
+                <div className="welcome-logo">
+                    <img className="logo" src="/logo.png"></img>
+                </div>
+                <Registration />
+            </div>
         </React.Fragment>
     );
 }

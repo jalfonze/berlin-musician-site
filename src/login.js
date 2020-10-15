@@ -30,7 +30,7 @@ export default function Login() {
 
     return (
         <React.Fragment>
-            <form>
+            <form className="login-form">
                 <h2>{errMsg}</h2>
                 <label>Username</label>
                 <input
@@ -46,10 +46,9 @@ export default function Login() {
                     name="password"
                     placeholder="Your Password"
                 ></input>
-                <label>Log In</label>
-                <button onClick={login} type="submit">
-                    Submit
-                </button>
+                <label className="loginBtn" onClick={login}>
+                    Log In
+                </label>
             </form>
         </React.Fragment>
     );

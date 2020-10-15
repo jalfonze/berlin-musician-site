@@ -56,6 +56,24 @@ export default function (state = {}, action) {
         state.shopping = action.empty[0].item;
     }
 
+    if (action.type == "MY_RECIPE") {
+        state = {
+            ...state,
+            myRecipes: action.myRecipe,
+        };
+    }
+    if (action.type == "ADD_RECIPE") {
+        console.log("NEWLY ADDED RED", action.addRecipe);
+        state = {
+            ...state,
+            myRecipes: [...state.myRecipes, action.addRecipe[0]],
+        };
+    }
+    if (action.type == "DEL_RECIPE") {
+        console.log("NEWLY ADDED RED", action.delRec);
+        state.myRecipes = action.delRec;
+    }
+
     console.log("SSTATE", state);
     return state;
 }

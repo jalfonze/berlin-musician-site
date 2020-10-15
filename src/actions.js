@@ -61,7 +61,7 @@ export async function remTop(id) {
 export async function saveItem(itemObj) {
     // console.log("ITEM OBJE", itemObj);
     const { data } = await axios.post("/save-item", itemObj);
-    console.log("SAVE ITEM DATA", data);
+    // console.log("SAVE ITEM DATA", data);
     return {
         type: "SAVE_ITEM",
         savedItem: data,
@@ -69,7 +69,7 @@ export async function saveItem(itemObj) {
 }
 export async function getList() {
     const { data } = await axios.get("/get-list");
-    console.log("LISTS ITEM DATA", data);
+    // console.log("LISTS ITEM DATA", data);
     return {
         type: "GET_LIST",
         shoppingList: data,
@@ -77,9 +77,39 @@ export async function getList() {
 }
 export async function delList() {
     const { data } = await axios.get("/del-list");
-    console.log("DELETE LIST DEFAULT", data);
+    // console.log("DELETE LIST DEFAULT", data);
     return {
         type: "DEL",
         empty: data,
+    };
+}
+export async function getMyRecipe() {
+    const { data } = await axios.get("/get-my-recipes");
+    console.log("PERSONAL RECIPES", data);
+    return {
+        type: "MY_RECIPE",
+        myRecipe: data,
+    };
+}
+
+export async function addRecipe(obj) {
+    console.log("ADD RECIPE OBJ", obj);
+    const { data } = await axios.post("/create-recipe", obj);
+    console.log("ADDED RECIPES", data);
+    return {
+        type: "ADD_RECIPE",
+        addRecipe: data,
+    };
+}
+
+export async function delRecipe(id) {
+    let idRec = {
+        recId: id,
+    };
+    const { data } = await axios.post("/del-recipe", idRec);
+    console.log("DEL RECIPES", data);
+    return {
+        type: "DEL_RECIPE",
+        delRec: data,
     };
 }
