@@ -232,7 +232,7 @@ app.get("/get-most-vewied", (req, res) => {
 
 let itemArr = [];
 app.post("/save-item", (req, res) => {
-    // console.log("SAVE THIS ITEM", req.body);
+    console.log("SAVE THIS ITEM", req.body);
     itemArr = [...itemArr, req.body.item];
     // console.log("ITEM ARR", itemArr);
     db.saveItem(itemArr, req.session.userId)
