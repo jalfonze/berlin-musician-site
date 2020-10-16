@@ -1,6 +1,9 @@
 const spicedPg = require("spiced-pg");
 
-const db = spicedPg("postgres:postgres:postgres@localhost:5432/food-user");
+const db = spicedPg(
+    process.env.DATABASE_URL ||
+        "postgres:postgres:postgres@localhost:5432/food-user"
+);
 
 module.exports.createUser = (username, email, img, pw) => {
     return db.query(
