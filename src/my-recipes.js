@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "./axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyRecipe, addRecipe, delRecipe } from "./actions";
@@ -13,6 +13,11 @@ export default function MyRecipes() {
         method: "",
     });
     const [errMsg, setErrMsg] = useState("");
+
+    const input = useRef();
+    const input1 = useRef();
+    const input2 = useRef();
+    const input3 = useRef();
 
     const [modal, setModal] = useState(false);
     let [modalInfo, setModalInfo] = useState();
@@ -58,6 +63,10 @@ export default function MyRecipes() {
         } else {
             dispatch(addRecipe(inputValues));
         }
+        input.current.value = "";
+        input1.current.value = "";
+        input2.current.value = "";
+        input3.current.value = "";
     };
 
     const deleteRecipe = (num) => {
@@ -76,6 +85,7 @@ export default function MyRecipes() {
                     <h2 className="errmsg">{errMsg}</h2>
                     <label htmlFor="label">Name of dish</label>
                     <input
+                        ref={input}
                         onChange={handleChange}
                         type="text"
                         id="label"
@@ -84,6 +94,7 @@ export default function MyRecipes() {
                     ></input>
                     <label htmlFor="ingred">Ingredients</label>
                     <textarea
+                        ref={input1}
                         onChange={handleChange}
                         rows="10"
                         cols="30"
@@ -91,8 +102,9 @@ export default function MyRecipes() {
                         name="ingred"
                         placeholder="ingredients"
                     ></textarea>
-                    <label htmlFor="yield">Yield</label>
+                    <label htmlFor="yield">Yield (Amount of dishes)</label>
                     <input
+                        ref={input2}
                         onChange={handleChange}
                         type="number"
                         id="yield"
@@ -101,6 +113,7 @@ export default function MyRecipes() {
                     ></input>
                     <label htmlFor="method">Method</label>
                     <textarea
+                        ref={input3}
                         onChange={handleChange}
                         rows="10"
                         cols="40"

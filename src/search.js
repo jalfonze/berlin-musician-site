@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "./axios";
 
 export default function Search() {
@@ -7,6 +7,12 @@ export default function Search() {
         //     console.log(response.data);
         // });
     }, []);
+
+    const clearInput = useRef();
+    const clearBox = useRef();
+    const clearBox1 = useRef();
+    const clearBox2 = useRef();
+    const clearBox3 = useRef();
 
     let [searchInput, setSearchInput] = useState("");
     const [foodItems, setFoodItems] = useState([]);
@@ -30,10 +36,16 @@ export default function Search() {
             setFoodItems(response.data);
         });
         searchInput = "";
+        clearInput.current.value = "";
+        clearBox.current.checked = false;
+        clearBox1.current.checked = false;
+        clearBox2.current.checked = false;
+        clearBox3.current.checked = false;
     };
 
     const checkBoxClick = (e) => {
         // console.log(e.target.value);
+
         if (e.target.checked) {
             setFilteredOptions([...filteredOptions, e.target.value]);
         } else if (!e.target.checked) {
@@ -85,6 +97,7 @@ export default function Search() {
             </div>
             <div className="search-inputs">
                 <input
+                    ref={clearInput}
                     className="inputOne"
                     onChange={handleSearch}
                     type="text"
@@ -93,6 +106,7 @@ export default function Search() {
                 ></input>
                 <div className="checkboxes">
                     <input
+                        ref={clearBox}
                         type="checkbox"
                         name="health"
                         value="peanut-free"
@@ -101,6 +115,7 @@ export default function Search() {
                     ></input>
                     <label>Peanut Free</label>
                     <input
+                        ref={clearBox1}
                         type="checkbox"
                         name="health"
                         value="alcohol-free"
@@ -109,6 +124,7 @@ export default function Search() {
                     ></input>
                     <label>Alcohol Free</label>
                     <input
+                        ref={clearBox2}
                         type="checkbox"
                         name="health"
                         value="vegan"
@@ -117,6 +133,7 @@ export default function Search() {
                     ></input>
                     <label>Vegan</label>
                     <input
+                        ref={clearBox3}
                         type="checkbox"
                         name="health"
                         value="vegetarian"
@@ -135,19 +152,24 @@ export default function Search() {
             </div>
             <div>
                 <div className="search-items">
-                    {foodItems &&
-                        foodItems.map((item, i) => {
-                            return (
-                                <div key={i}>
-                                    <img
-                                        className="modal-img"
-                                        onClick={() => showModal(i)}
-                                        src={item.recipe.image}
-                                    ></img>
-                                    <h3 className="h3">{item.recipe.label}</h3>
-                                </div>
-                            );
-                        })}
+                    {(foodItems && foodItems.length == 0 && (
+                        <h1>No Results</h1>
+                    )) ||
+                        (foodItems &&
+                            foodItems.map((item, i) => {
+                                return (
+                                    <div key={i}>
+                                        <img
+                                            className="modal-img"
+                                            onClick={() => showModal(i)}
+                                            src={item.recipe.image}
+                                        ></img>
+                                        <h3 className="h3">
+                                            {item.recipe.label}
+                                        </h3>
+                                    </div>
+                                );
+                            }))}
                     <div className="modal-parent">
                         {modal && modalInfo && (
                             <div className="modal">

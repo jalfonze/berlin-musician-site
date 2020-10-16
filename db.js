@@ -63,7 +63,7 @@ module.exports.mostViewed = (id) => {
     return db.query(
         `
         SELECT * FROM favourites
-        WHERE user_id = ($1)
+        WHERE user_id = ($1) AND click_count > 1
         ORDER BY click_count DESC
         LIMIT 3
         `,
@@ -134,11 +134,13 @@ module.exports.saveItem = (item, id) => {
         [item, id]
     );
 };
-module.exports.getList = () => {
+module.exports.getList = (id) => {
     return db.query(
         `
         SELECT * FROM shopping
-        `
+        WHERE user_id = ($1)
+        `,
+        [id]
     );
 };
 

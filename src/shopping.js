@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveItem, getList, delList } from "./actions";
 
 export default function Shopping() {
+    const shoppingRef = useRef();
     const [items, setItems] = useState([]);
     const dispatch = useDispatch();
     const shoppingList = useSelector((state) => state.shopping);
@@ -23,6 +24,8 @@ export default function Shopping() {
     const saveThisItem = (e) => {
         e.preventDefault();
         dispatch(saveItem(items));
+        console.log("SHOPPING REF", shoppingRef.current.value);
+        shoppingRef.current.value = "";
     };
 
     const deleteList = (e) => {
@@ -45,6 +48,7 @@ export default function Shopping() {
                 </div>
                 <div className="add-item">
                     <input
+                        ref={shoppingRef}
                         className="list-input"
                         type="text"
                         name="item"

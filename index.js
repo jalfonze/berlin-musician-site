@@ -238,7 +238,7 @@ app.post("/save-item", (req, res) => {
         .catch((err) => console.log("ERROR IN SAVE ITEM", err));
 });
 app.get("/get-list", (req, res) => {
-    db.getList().then((response) => {
+    db.getList(req.session.userId).then((response) => {
         // console.log(response.rows);
         res.json(response.rows);
     });
