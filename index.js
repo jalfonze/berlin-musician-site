@@ -5,7 +5,7 @@ const db = require("./db");
 const bc = require("./bc");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
-const secrets = require("./secrets.json");
+let secrets;
 const axios = require("axios");
 
 app.use(compression());
@@ -15,8 +15,13 @@ const cookieSessionMiddleware = cookieSession({
     maxAge: 1000 * 60 * 60 * 24 * 90,
 });
 
-const APP_ID = secrets.APP_ID;
-const APP_KEY = secrets.APP_KEY;
+if (process.env.NODE_ENV == "production") {
+    secrets = process.env;
+} else {
+    secrets = require("./secrets.json");
+}
+let APP_ID = secrets.APP_ID;
+let APP_KEY = secrets.APP_KEY;
 
 // console.log(API_ID, API_KEY);
 
