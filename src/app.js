@@ -17,13 +17,13 @@ export default function App() {
                 <div className="nav">
                     <img src="/logo.png" width="100px"></img>
                     <h5>
-                        <Link to="/search">
-                            <i className="fas fa-search"></i>
+                        <Link to="/">
+                            <i className="fas fa-user"></i>
                         </Link>
                     </h5>
                     <h5>
-                        <Link to="/">
-                            <i className="fas fa-user"></i>
+                        <Link to="/search">
+                            <i className="fas fa-search"></i>
                         </Link>
                     </h5>
                     <h5>

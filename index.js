@@ -58,6 +58,27 @@ app.get("/", (req, res) => {
         res.sendFile(__dirname + "/index.html");
     }
 });
+app.get("/search", (req, res) => {
+    if (!req.session.userId) {
+        res.redirect("/welcome");
+    } else {
+        res.redirect(req.url);
+    }
+});
+app.get("/my-fave", (req, res) => {
+    if (!req.session.userId) {
+        res.redirect("/welcome");
+    } else {
+        res.redirect(req.url);
+    }
+});
+app.get("/my-recipes", (req, res) => {
+    if (!req.session.userId) {
+        res.redirect("/welcome");
+    } else {
+        res.redirect(req.url);
+    }
+});
 
 app.post("/createUser", (req, res) => {
     console.log(req.body);
