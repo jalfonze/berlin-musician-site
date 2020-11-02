@@ -23,7 +23,7 @@ if (process.env.NODE_ENV == "production") {
 let APP_ID = secrets.APP_ID;
 let APP_KEY = secrets.APP_KEY;
 
-// console.log(API_ID, API_KEY);
+console.log(API_ID, API_KEY);
 
 app.use(cookieSessionMiddleware);
 
