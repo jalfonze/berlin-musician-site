@@ -4,3 +4,41 @@
     background-color: #fff4e7;
     font-family: "Quicksand", sans-serif;
 }
+/* NAVBAR */
+.navbar {
+    display: flex;
+    /* justify-content: flex-end; */
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: darkslategrey;
+}
+
+.navbar * {
+    background-color: darkslategrey;
+    padding: 0px 40px;
+    color: white;
+}
+
+.logo {
+    justify-self: flex-end;
+}
+
+/* WELCOME */
+
+.welcome-bgc {
+    height: 100vh;
+    background: url(./welcome.jpg);
+}
+.welcome-msg {
+    position: absolute;
+    background: none;
+    top: 50%;
+    left: 20%;
+    right: 30%;
+    object-fit: fill;
+}
+.welcome-msg * {
+    background: none;
+    color: white;
+}
