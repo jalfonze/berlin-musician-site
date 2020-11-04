@@ -5,6 +5,10 @@
     font-family: "Quicksand", sans-serif;
 }
 /* NAVBAR */
+a {
+    padding: 0;
+}
+
 .navbar {
     display: flex;
     /* justify-content: flex-end; */
