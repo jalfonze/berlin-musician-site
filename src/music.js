@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
-import axios from "./axios";
+import React, { useEffect, useState } from "react";
+import Releases from "./releases";
+import Musicians from "./musicians";
 
-export default function Welcome() {
-    useEffect(() => {
-        axios
-            .get("/playlist-info")
-            .then((response) => {
-                console.log("Musicians data", response.data);
-            })
-            .catch((err) => console.log("ERR IN PLAYLIST", err));
-    }, []);
+export default function Music() {
     return (
         <React.Fragment>
             <div className="music">
-                <h1>Musicians</h1>
+                <h3>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Risus nec feugiat in fermentum posuere urna nec
+                    tincidunt. Curabitur vitae nunc sed velit. Volutpat lacus
+                    laoreet non curabitur gravida. Cursus turpis massa tincidunt
+                </h3>
             </div>
+            <Releases />
+            <Musicians />
         </React.Fragment>
     );
 }

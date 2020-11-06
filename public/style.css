@@ -1,12 +1,21 @@
 * {
     margin: 0;
     box-sizing: border-box;
-    background-color: #fff4e7;
     font-family: "Quicksand", sans-serif;
 }
+
 /* NAVBAR */
 a {
     padding: 0;
+}
+
+a:hover {
+    color: wheat;
+    text-decoration: none;
+}
+
+h3 {
+    font-size: 16pt;
 }
 
 .navbar {
@@ -14,7 +23,7 @@ a {
     /* justify-content: flex-end; */
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     background-color: darkslategrey;
 }
 
@@ -22,6 +31,7 @@ a {
     background-color: darkslategrey;
     padding: 0px 40px;
     color: white;
+    font-size: 14pt;
 }
 
 .logo {
@@ -29,11 +39,10 @@ a {
 }
 
 /* WELCOME */
-
-.welcome-bgc {
+/* .welcome-bgc {
     height: 100vh;
     background: url(./welcome.jpg);
-}
+} */
 .welcome-msg {
     position: absolute;
     background: none;
@@ -42,7 +51,45 @@ a {
     right: 30%;
     object-fit: fill;
 }
+
 .welcome-msg * {
     background: none;
     color: white;
+}
+
+/* MUSICIANS */
+/* releases */
+.release-list {
+    display: flex;
+    overflow: scroll;
+    justify-content: space-between;
+}
+
+.release-list {
+    padding: 5px;
+}
+
+/* artists */
+.artist-list {
+    display: flex;
+    overflow: scroll;
+    justify-content: space-between;
+}
+
+.artist-list {
+    padding: 5px;
+}
+
+/* MAP */
+.map-container {
+    height: 80vh;
+}
+
+/* CAROUSEL */
+
+.carousel-caption {
+    padding: 0;
+}
+.carousel-caption * {
+    margin: 0;
 }

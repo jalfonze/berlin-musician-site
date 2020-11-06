@@ -6,13 +6,14 @@ export default function Nav() {
         <Fragment>
             <div className="navbar">
                 <Link to="/">
-                    <img src="./bmsclogo.png" height="70px"></img>
+                    <img src="./bmsclogo.png" height="60px"></img>
                 </Link>
-                <h3>About</h3>
                 <h3>
                     <Link to="/music">Local Music Scene</Link>
                 </h3>
-                <h3>Events</h3>
+                <h3>
+                    <Link to="/events">Events</Link>
+                </h3>
                 <h3>Sponsors</h3>
                 <h3>Contact Us</h3>
             </div>

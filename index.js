@@ -7,7 +7,6 @@ const csurf = require("csurf");
 const secrets = require("./secrets.json");
 const base64 = require("base-64");
 const axios = require("axios");
-const qs = require("querystring");
 
 app.use(compression());
 
@@ -71,31 +70,47 @@ app.get("/playlist-info", (req, res) => {
         data: "grant_type=client_credentials",
     })
         .then((response) => {
-            console.log("TOKEN", response.data.access_token);
+            // console.log("TOKEN", response.data.access_token);
             let token = response.data.access_token;
+            let artistId = [];
             axios({
                 method: "GET",
-                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?limit=5`,
+                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?limit=20`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             }).then((response) => {
                 // console.log(response.data.items);
                 let musicians = [];
+                // let artist = [];
                 let info = response.data.items;
                 info.map((infos) => {
-                    // console.log("track info", infos.track.name);
                     let musoInfo = infos.track.album;
                     musicians.push(musoInfo);
+                    artistId.push(musoInfo.artists[0].id);
                 });
-                // console.log("MUSICIANS", musicians);
-                res.json(musicians);
+                // console.log("ART ID", artistId);
+                let id = artistId.join(",");
+                console.log(id);
+                axios({
+                    method: "GET",
+                    url: `https://api.spotify.com/v1/artists?ids=${id}`,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                    .then((response) => {
+                        console.log("ARTISTS", response.data);
+                        res.json({
+                            playlist: musicians,
+                            artists: response.data.artists,
+                        });
+                    })
+                    .catch((err) => console.log("ERR IN GET ID", err));
             });
         })
         .catch((err) => console.log("ERR", err));
 });
-
-//spotify:playlist:2zaPudFYwrOReyPD3Sw0l3
 
 app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
