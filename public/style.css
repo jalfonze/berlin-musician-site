@@ -4,6 +4,12 @@
     font-family: "Quicksand", sans-serif;
 }
 
+ul {
+    padding: 2px;
+    margin: 0;
+    list-style: none;
+}
+
 /* NAVBAR */
 a {
     padding: 0;
@@ -38,26 +44,36 @@ h3 {
     justify-self: flex-end;
 }
 
-/* WELCOME */
-/* .welcome-bgc {
-    height: 100vh;
-    background: url(./welcome.jpg);
-} */
-.welcome-msg {
-    position: absolute;
-    background: none;
-    top: 50%;
-    left: 20%;
-    right: 30%;
-    object-fit: fill;
+.navbar a {
+    padding: 0;
 }
 
-.welcome-msg * {
-    background: none;
-    color: white;
+/* WELCOME */
+
+.about h1 {
+    padding: 30px;
+    margin: 0;
+}
+.about p {
+    padding: 30px;
+    padding-top: 0;
+    margin: 0;
+}
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* MUSICIANS */
+
+.spinner {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
 /* releases */
 .release-list {
     display: flex;
@@ -70,26 +86,125 @@ h3 {
 }
 
 /* artists */
-.artist-list {
+.info-name {
+    width: max-content;
+}
+
+.artist-info:hover {
+    color: wheat;
+    background: rgba(47, 79, 79, 0.322);
+    border-radius: 3px;
+}
+.artists h2 {
     display: flex;
-    overflow: scroll;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 30px;
 }
 
 .artist-list {
-    padding: 5px;
+    display: flex;
+    /* overflow: scroll; */
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+.artist-list a {
+    color: black;
+}
+.artist-list a:hover {
+    color: wheat;
+}
+
+.artist-list * {
+    margin: 10px;
+}
+
+.artist-list h1 {
+    text-align: center;
 }
 
 /* MAP */
 .map-container {
     height: 80vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.marker-info {
+    overflow: scroll;
+}
+.marker-info p {
+    margin: 0;
+}
+.marker-info h2 {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+.marker-info h3 {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.payment-provide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 /* CAROUSEL */
 
 .carousel-caption {
-    padding: 0;
+    position: absolute;
+    bottom: 20%;
+    left: 60%;
 }
-.carousel-caption * {
-    margin: 0;
+
+.carousel-caption p {
+    width: 400px;
+    background-color: rgb(255, 255, 255, 0.6);
+    color: black;
+    padding: 20px;
+    border-radius: 5px;
+}
+.carousel-control-prev {
+    width: max-content;
+    height: max-content;
+    margin: 30px;
+    margin-top: 20%;
+}
+.carousel-control-next {
+    width: max-content;
+    height: max-content;
+    margin: 30px;
+    margin-top: 20%;
+}
+
+.carousel-indicators li {
+    background-color: black;
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: darkslategrey;
+    color: white;
+}
+.footer a {
+    color: white;
+}
+.footer a:hover {
+    color: wheat;
+}
+
+/* POP UP */
+
+.leaflet-popup-content p {
+    margin-bottom: 2px;
+    font-size: 12pt;
 }

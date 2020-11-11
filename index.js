@@ -7,6 +7,7 @@ const csurf = require("csurf");
 const secrets = require("./secrets.json");
 const base64 = require("base-64");
 const axios = require("axios");
+const db = require("./db");
 
 app.use(compression());
 
@@ -75,7 +76,7 @@ app.get("/playlist-info", (req, res) => {
             let artistId = [];
             axios({
                 method: "GET",
-                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?limit=20`,
+                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?limit=40`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -112,6 +113,12 @@ app.get("/playlist-info", (req, res) => {
         .catch((err) => console.log("ERR", err));
 });
 
+app.get("/locations", (req, res) => {
+    db.getLocation().then((response) => {
+        console.log(response.rows);
+        res.json(response.rows);
+    });
+});
 app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
