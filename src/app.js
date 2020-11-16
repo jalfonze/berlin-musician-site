@@ -3,8 +3,8 @@ import { BrowserRouter, Link, Route } from "react-router-dom";
 import Nav from "./nav";
 import Welcome from "./welcome";
 import Music from "./music";
-import Events from "./events";
-import Sponsors from "./sponsors";
+import Venues from "./venues";
+import Collaboration from "./collab";
 import NotFound from "./notfound";
 
 export default function App() {
@@ -16,8 +16,8 @@ export default function App() {
                 <Nav />
                 <Route exact path="/" render={() => <Welcome />} />
                 <Route path="/music" render={() => <Music />} />
-                <Route path="/events" render={() => <Events />} />
-                <Route path="/sponsors" render={() => <Sponsors />} />
+                <Route path="/venues" render={() => <Venues />} />
+                <Route path="/collaboration" render={() => <Collaboration />} />
                 <Route path="/notfound" render={() => <NotFound />} />
                 <div className="footer">
                     <h3>

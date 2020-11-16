@@ -92,7 +92,7 @@ app.get("/playlist-info", (req, res) => {
                 });
                 // console.log("ART ID", artistId);
                 let id = artistId.join(",");
-                console.log(id);
+                // console.log(id);
                 axios({
                     method: "GET",
                     url: `https://api.spotify.com/v1/artists?ids=${id}`,
@@ -101,7 +101,7 @@ app.get("/playlist-info", (req, res) => {
                     },
                 })
                     .then((response) => {
-                        console.log("ARTISTS", response.data);
+                        // console.log("ARTISTS", response.data);
                         res.json({
                             playlist: musicians,
                             artists: response.data.artists,
@@ -115,9 +115,46 @@ app.get("/playlist-info", (req, res) => {
 
 app.get("/locations", (req, res) => {
     db.getLocation().then((response) => {
-        console.log(response.rows);
+        // console.log(response.rows);
         res.json(response.rows);
     });
+});
+
+app.get("/kiez/:val.json", (req, res) => {
+    // console.log(req.params.val);
+    db.getKiez(req.params.val).then((response) => {
+        // console.log(response.rows);
+        res.json(response.rows);
+    });
+});
+
+app.get("/get-rev/:id.json", (req, res) => {
+    // console.log("VENUE ID", req.params.id);
+    db.getRev(req.params.id)
+        .then((response) => {
+            // console.log(response.rows);
+            if (response.rows.length == 0) {
+                res.json([
+                    {
+                        review: "currently no reviews",
+                    },
+                ]);
+            } else {
+                res.json(response.rows);
+            }
+        })
+        .catch((err) => console.log("error in get rev", err));
+});
+
+app.post("/post-rev", (req, res) => {
+    // console.log(req.body);
+    let { id, name, review } = req.body;
+    db.postRev(id, name || "anonymous", review)
+        .then((response) => {
+            console.log(response.rows);
+            res.json(response.rows[0]);
+        })
+        .catch((err) => console.log("ERR IN POST REV", err));
 });
 app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");

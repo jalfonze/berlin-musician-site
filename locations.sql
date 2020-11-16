@@ -28,3 +28,22 @@ VALUES ('Toast Hawaii', 'Danziger Str. 1, 10435 Berlin', 52.541090, 13.412900, '
 ('800a', 'Stettiner Straße 19, 13357 Berlin
 ', 52.553840, 13.387410, '{Hat (Donation basis)}', '{PA (sound system and mixer)}'),
 ('Space Meduza', 'Skalitzer Str. 80, 10997 Berlin', 52.500730, 13.439310, '{Hat (Donation basis)}', '{PA (sound system and mixer)}');
+
+DROP TABLE IF EXISTS reviews CASCADE;
+
+CREATE TABLE reviews (
+     id SERIAL PRIMARY KEY,
+     sender VARCHAR NOT NULL,
+     review VARCHAR NOT NULL,
+     review_id INT REFERENCES locations(id) NOT NULL,
+     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS collab CASCADE;
+
+CREATE TABLE collab (
+     id SERIAL PRIMARY KEY,
+     img VARCHAR NOT NULL,
+     name VARCHAR NOT NULL,
+     code VARCHAR NOT NULL
+);

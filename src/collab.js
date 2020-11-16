@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Sponsors() {
+export default function Collaboration() {
     return (
         <React.Fragment>
-            <h1 className="sponsors-title">Here is a list of Local Sponsors</h1>
+            <h1 className="sponsors-title">Here are our collaborations</h1>
             <div className="sponsors-container"></div>
         </React.Fragment>
     );

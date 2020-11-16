@@ -126,6 +126,20 @@ h3 {
 }
 
 /* MAP */
+
+.kiez {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.kiez h3 {
+    margin: 2px;
+    cursor: pointer;
+    width: max-content;
+    padding: 0px;
+}
+
 .map-container {
     height: 80vh;
     display: grid;
@@ -134,6 +148,7 @@ h3 {
 
 .marker-info {
     overflow: scroll;
+    position: relative;
 }
 .marker-info p {
     margin: 0;
@@ -143,15 +158,33 @@ h3 {
     justify-content: center;
     padding: 5px;
 }
-.marker-info h3 {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 15px;
-}
 
+.venue-names {
+    padding: 10px;
+}
 .payment-provide {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.venueName {
+    width: max-content;
+    margin: 0;
+    padding-bottom: 15px;
+}
+
+.comment-div {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* POP UP */
+
+.leaflet-popup-content p {
+    margin-bottom: 2px;
+    font-size: 12pt;
 }
 
 /* CAROUSEL */
@@ -200,11 +233,4 @@ h3 {
 }
 .footer a:hover {
     color: wheat;
-}
-
-/* POP UP */
-
-.leaflet-popup-content p {
-    margin-bottom: 2px;
-    font-size: 12pt;
 }

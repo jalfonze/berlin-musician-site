@@ -12,10 +12,10 @@ export default function Nav() {
                     <Link to="/music">Local Music Scene</Link>
                 </h3>
                 <h3>
-                    <Link to="/events">Venue Reviews</Link>
+                    <Link to="/venues">Venue Reviews</Link>
                 </h3>
                 <h3>
-                    <Link to="/sponsors">Sponsors</Link>
+                    <Link to="/collaboration">Collaborations</Link>
                 </h3>
                 <h3>Contact Us</h3>
             </div>
