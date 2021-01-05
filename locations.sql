@@ -29,6 +29,7 @@ VALUES ('Toast Hawaii', 'Danziger Str. 1, 10435 Berlin', 52.541090, 13.412900, '
 ', 52.553840, 13.387410, '{Hat (Donation basis)}', '{PA (sound system and mixer)}'),
 ('Space Meduza', 'Skalitzer Str. 80, 10997 Berlin', 52.500730, 13.439310, '{Hat (Donation basis)}', '{PA (sound system and mixer)}');
 
+
 DROP TABLE IF EXISTS reviews CASCADE;
 
 CREATE TABLE reviews (
