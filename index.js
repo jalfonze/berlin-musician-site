@@ -3,8 +3,8 @@ const app = express();
 const compression = require("compression");
 const cookieSession = require("cookie-session");
 const csurf = require("csurf");
-// let secrets;
-const secrets = require("./secrets.json");
+let secrets;
+// const secrets = require("./secrets.json");
 const base64 = require("base-64");
 const axios = require("axios");
 const db = require("./db");
@@ -16,11 +16,11 @@ const cookieSessionMiddleware = cookieSession({
     maxAge: 1000 * 60 * 60 * 24 * 90,
 });
 
-// if (process.env.NODE_ENV == "production") {
-//     secrets = process.env;
-// } else {
-//     secrets = require("./secrets.json");
-// }
+if (process.env.NODE_ENV == "production") {
+    secrets = process.env;
+} else {
+    secrets = require("./secrets.json");
+}
 
 const CLIENT_ID = secrets.CLIENT_ID;
 const CLIENT_SECRET = secrets.CLIENT_SECRET;
