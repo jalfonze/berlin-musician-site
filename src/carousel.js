@@ -8,29 +8,14 @@ export default function Carousell() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="/01.png"
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <p>
-                            Nulla vitae elit libero, a pharetra augue mollis
-                            interdum.
-                            <br></br>
-                            <a href="#">Click here for more info</a>
-                        </p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
                         src="/06.png"
                         alt="Third slide"
                     />
 
-                    <Carousel.Caption>
+                    {/* <Carousel.Caption>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit.
+                            Click here to go to a Spotify playlist showcasing
+                            Berlin's underground talent! Regularly updated
                             <br></br>
                             <a
                                 target="_blank"
@@ -40,9 +25,9 @@ export default function Carousell() {
                                 Click here for more info
                             </a>
                         </p>
-                    </Carousel.Caption>
+                    </Carousel.Caption> */}
                 </Carousel.Item>
-                <Carousel.Item>
+                {/* <Carousel.Item>
                     <img
                         className="d-block w-100"
                         src="/05.png"
@@ -63,7 +48,7 @@ export default function Carousell() {
                             </a>
                         </p>
                     </Carousel.Caption>
-                </Carousel.Item>
+                </Carousel.Item> */}
             </Carousel>
         </React.Fragment>
     );

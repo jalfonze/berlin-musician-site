@@ -6,6 +6,7 @@ import Music from "./music";
 import Venues from "./venues";
 import Collaboration from "./collab";
 import NotFound from "./notfound";
+// import Contact from "./contact";
 
 export default function App() {
     useEffect(() => {}, []);
@@ -18,6 +19,7 @@ export default function App() {
                 <Route path="/music" render={() => <Music />} />
                 <Route path="/venues" render={() => <Venues />} />
                 <Route path="/collaboration" render={() => <Collaboration />} />
+                {/* <Route path="/contact-us" render={() => <Contact />} /> */}
                 <Route path="/notfound" render={() => <NotFound />} />
                 <div className="footer">
                     <h3>

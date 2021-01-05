@@ -85,13 +85,21 @@ export default function Venues() {
 
     return (
         <React.Fragment>
-            <div className="music">
+            <div className="venue-head">
                 <h3>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Risus nec feugiat in fermentum posuere urna nec
-                    tincidunt. Curabitur vitae nunc sed velit. Volutpat lacus
-                    laoreet non curabitur gravida. Cursus turpis massa tincidunt
+                    Here are a list of Live Music venues dotted all over Berlin.
+                    If you would like to add more information, please click this
+                    link to take part in the survey{" "}
+                    <a
+                        href="https://docs.google.com/forms/d/1DiBcKWtlZ9ZyHxKdeBXdjRpCnwrwtKqBPijqW1fbZos/viewform?edit_requested=true"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        LINK
+                    </a>{" "}
+                    alternatively please feel free to write constructive
+                    comments that will help the relationships between musicians
+                    and venues.
                 </h3>
             </div>
             <div className="map-container">
@@ -177,27 +185,31 @@ export default function Venues() {
                     )) ||
                         (info && (
                             <div>
-                                <p onClick={back}>back</p>
-                                <div className="venue-info-head">
-                                    <h2>{info.venue}</h2>
-                                    <h3>{info.address}</h3>
-                                </div>
-                                <div className="payment-provide">
-                                    <div className="payment">
-                                        <h4>Payment Options</h4>
-                                        {info.payment.map((payment, i) => {
-                                            return <p key={i}>{payment}</p>;
-                                        })}
+                                <p className="back-button" onClick={back}>
+                                    back
+                                </p>
+                                <div className="info-div">
+                                    <div className="venue-info-head">
+                                        <h2>{info.venue}</h2>
+                                        <h3>{info.address}</h3>
                                     </div>
-                                    <div className="payment">
-                                        <h4>What the venue provides</h4>
-                                        {info.provide.map((provide, i) => {
-                                            return (
-                                                <div key={i}>
-                                                    <p>{provide}</p>
-                                                </div>
-                                            );
-                                        })}
+                                    <div className="payment-provide">
+                                        <div className="payment">
+                                            <h4>Payment Options</h4>
+                                            {info.payment.map((payment, i) => {
+                                                return <p key={i}>{payment}</p>;
+                                            })}
+                                        </div>
+                                        <div className="payment">
+                                            <h4>What the venue provides</h4>
+                                            {info.provide.map((provide, i) => {
+                                                return (
+                                                    <div key={i}>
+                                                        <p>{provide}</p>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="comment-div">
@@ -205,6 +217,7 @@ export default function Venues() {
                                     <input
                                         ref={inputName}
                                         type="text"
+                                        className="name-input"
                                         name="sender"
                                         placeholder="write something"
                                         onChange={inputVal}
@@ -214,6 +227,7 @@ export default function Venues() {
                                     </label>
                                     <input
                                         ref={inputRev}
+                                        className="review-input"
                                         type="text"
                                         name="comment"
                                         placeholder="write something"
@@ -232,9 +246,10 @@ export default function Venues() {
                                                     key={i}
                                                     className="comment-section"
                                                 >
-                                                    <h2>{rev.sender}</h2>
-                                                    <h3>{rev.review}</h3>
-                                                    <p>{rev.created}</p>
+                                                    <h2>{rev.review}</h2>
+                                                    <h3>{rev.sender}</h3>
+                                                    <p>{rev.to_char}</p>
+                                                    <div className="linebreak"></div>
                                                 </div>
                                             );
                                         })}

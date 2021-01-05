@@ -10,6 +10,20 @@ ul {
     list-style: none;
 }
 
+button {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+.linebreak {
+    border: solid black 1px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
 /* NAVBAR */
 a {
     padding: 0;
@@ -29,7 +43,7 @@ h3 {
     /* justify-content: flex-end; */
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
     background-color: darkslategrey;
 }
 
@@ -55,7 +69,7 @@ h3 {
     margin: 0;
 }
 .about p {
-    padding: 30px;
+    padding: 150px;
     padding-top: 0;
     margin: 0;
 }
@@ -91,7 +105,7 @@ h3 {
 }
 
 .artist-info:hover {
-    color: wheat;
+    color: rgb(65, 59, 49);
     background: rgba(47, 79, 79, 0.322);
     border-radius: 3px;
 }
@@ -114,7 +128,7 @@ h3 {
     color: black;
 }
 .artist-list a:hover {
-    color: wheat;
+    color: rgb(65, 59, 49);
 }
 
 .artist-list * {
@@ -127,6 +141,24 @@ h3 {
 
 /* MAP */
 
+.venue-head h3 {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-button {
+    margin: 20px;
+    width: max-content;
+}
+
+.back-button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
 .kiez {
     width: 100%;
     display: flex;
@@ -134,33 +166,53 @@ h3 {
     justify-content: center;
 }
 .kiez h3 {
-    margin: 2px;
+    margin: 4px;
     cursor: pointer;
     width: max-content;
-    padding: 0px;
+    padding: 5px;
+    border: solid black 1px;
+}
+
+.kiez h3:hover {
+    background-color: salmon;
 }
 
 .map-container {
     height: 80vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin: 10px;
+    padding: 10px;
+    border: black 2px dotted;
 }
 
 .marker-info {
     overflow: scroll;
     position: relative;
 }
-.marker-info p {
-    margin: 0;
-}
+
 .marker-info h2 {
     display: flex;
     justify-content: center;
     padding: 5px;
 }
 
+.info-div {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.payment {
+    width: 80%;
+}
+
 .venue-names {
-    padding: 10px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .payment-provide {
     display: grid;
@@ -168,9 +220,12 @@ h3 {
 }
 
 .venueName {
+    cursor: pointer;
     width: max-content;
-    margin: 0;
-    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+.venueName:hover {
+    transform: scale(1.1);
 }
 
 .comment-div {
@@ -178,6 +233,26 @@ h3 {
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: relative;
+}
+.comment-div button {
+    margin: 20px;
+}
+
+.comment-section h2 {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 15pt;
+}
+.comment-section {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    width: 90%;
+}
+
+.review-input {
+    width: 80%;
+    height: 40px;
 }
 
 /* POP UP */
@@ -219,6 +294,39 @@ h3 {
     background-color: black;
 }
 
+/* CONTACT US */
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 40px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.form-div {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    padding: 20px;
+    margin: 30px;
+    border: solid black 1px;
+}
+
+form button {
+    margin: 10px;
+}
+
 /* FOOTER */
 
 .footer {
@@ -233,4 +341,10 @@ h3 {
 }
 .footer a:hover {
     color: wheat;
+}
+
+@media screen and (max-width: 1000px) {
+    .navbar * {
+        font-size: 10pt;
+    }
 }

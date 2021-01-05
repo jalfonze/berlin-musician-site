@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
-import { BrowserRouter, Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
     return (
         <Fragment>
             <div className="navbar">
                 <Link to="/">
-                    <img src="./bmsclogo.png" height="60px"></img>
+                    <i className="fas fa-home"></i>
                 </Link>
                 <h3>
-                    <Link to="/music">Local Music Scene</Link>
+                    <Link to="/music">Local Musicians</Link>
                 </h3>
                 <h3>
                     <Link to="/venues">Venue Reviews</Link>
@@ -17,7 +17,10 @@ export default function Nav() {
                 <h3>
                     <Link to="/collaboration">Collaborations</Link>
                 </h3>
-                <h3>Contact Us</h3>
+                <h3>
+                    {/* <Link to="/contact-us">Contact Us</Link> */}
+                    <a href="mailto:berlinmusicscene@gmail.com">Email Us</a>
+                </h3>
             </div>
         </Fragment>
     );

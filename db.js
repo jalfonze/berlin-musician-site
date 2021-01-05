@@ -23,7 +23,9 @@ module.exports.getKiez = (val) => {
 module.exports.getRev = (id) => {
     return db.query(
         `
-        SELECT * FROM reviews 
+        SELECT *,
+        TO_CHAR(created, 'HH24:MI DD-MON-YYYY')
+        FROM reviews 
         WHERE review_id = ($1)
         ORDER BY id DESC
         `,
@@ -35,7 +37,7 @@ module.exports.postRev = (id, name, rev) => {
         `
         INSERT INTO reviews (review_id, sender, review)
         VALUES ($1, $2, $3)
-        RETURNING *
+        RETURNING * ,TO_CHAR(created, 'HH24:MI DD-MON-YYYY')
         `,
         [id, name, rev]
     );

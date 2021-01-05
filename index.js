@@ -132,7 +132,7 @@ app.get("/get-rev/:id.json", (req, res) => {
     // console.log("VENUE ID", req.params.id);
     db.getRev(req.params.id)
         .then((response) => {
-            // console.log(response.rows);
+            console.log(response.rows);
             if (response.rows.length == 0) {
                 res.json([
                     {
@@ -156,6 +156,7 @@ app.post("/post-rev", (req, res) => {
         })
         .catch((err) => console.log("ERR IN POST REV", err));
 });
+
 app.get("*", function (req, res) {
     res.sendFile(__dirname + "/index.html");
 });
