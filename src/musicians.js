@@ -3,13 +3,31 @@ import axios from "./axios";
 
 export default function Musicians() {
     const [artistInfo, setArtistInfo] = useState([]);
-    console.log(artistInfo);
+
+    // console.log(artistInfo);
     useEffect(() => {
         axios
             .get("/playlist-info")
             .then((response) => {
                 // console.log("Musicians data ID", response.data.artists);
-                setArtistInfo(response.data.artists);
+                let newInfo = [];
+                let uniqueArtist = response.data.artists;
+                uniqueArtist.forEach((compareToArtist) => {
+                    const potentialArtist = newInfo.find((artistA) => {
+                        if (compareToArtist.id === artistA.id) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    });
+                    if (!potentialArtist) {
+                        newInfo.push(compareToArtist);
+                    } else {
+                        return;
+                    }
+                });
+                console.log("newINFO", newInfo);
+                setArtistInfo(newInfo);
             })
             .catch((err) => console.log("ERR IN PLAYLIST", err));
     }, []);
