@@ -1,11 +1,16 @@
 const spicedPg = require("spiced-pg");
-const { dbUser, dbPass } = require("./secrets.json");
+let secrets;
+
+if (process.env.NODE_ENV == "production") {
+    secrets = process.env;
+} else {
+    secrets = require("./secrets.json");
+}
 
 const db = spicedPg(
     process.env.DATABASE_URL ||
-        `postgres:${dbUser}:${dbPass}@localhost:5432/berlin-muso`
+        `postgres:${secrets.dbUser}:${secrets.dbPass}@localhost:5432/berlin-muso`
 );
-
 module.exports.getLocation = () => {
     return db.query(
         `
