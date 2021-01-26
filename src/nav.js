@@ -15,7 +15,7 @@ export default function Nav() {
                     <Link to="/venues">Venue Reviews</Link>
                 </h3>
                 <h3>
-                    <Link to="/collaboration">Collaborations</Link>
+                    <Link to="/collaboration">Local Specials</Link>
                 </h3>
                 <h3>
                     {/* <Link to="/contact-us">Contact Us</Link> */}

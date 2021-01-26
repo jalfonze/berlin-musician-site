@@ -294,6 +294,30 @@ h3 {
     background-color: black;
 }
 
+/* SPECIALS */
+.sponsors-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.sponsors-title p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 800px;
+}
+
+.sponsors-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 30px;
+    height: 100vh;
+}
+
 /* CONTACT US */
 
 .contact-container {
